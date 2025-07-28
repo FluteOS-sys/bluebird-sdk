@@ -1,8 +1,8 @@
-
 import json
 from datetime import datetime
 from typing import Dict, Any
 from .lattice import SymbolicLattice
+from .llm_interface import extract_symbolic_data
 
 class Weaver:
     def __init__(self, lattice_file: str = "symbolic_neurons.json"):
@@ -11,15 +11,14 @@ class Weaver:
         self.load_lattice()
 
     def parse_entry(self, text: str) -> Dict[str, Any]:
-        # Placeholder for real NLP/LLM extractor
-        return {
-            "trigger": "fog",
-            "emotion_profile": {"confusion": 0.9, "faith": 0.3},
-            "meaning_seed": "searching",
-            "archetypal_refs": ["Hermit", "Moon"],
-            "resonance_weight": 0.7,
-            "timestamp": datetime.utcnow().isoformat()
-        }
+        """
+        Use an LLM to extract symbolic metadata from user input.
+        """
+        neuron = extract_symbolic_data(text)
+        neuron["timestamp"] = datetime.utcnow().isoformat()
+        if "resonance_weight" not in neuron:
+            neuron["resonance_weight"] = 0.5
+        return neuron
 
     def update_lattice(self, neuron_data: Dict[str, Any]):
         trigger = neuron_data["trigger"]
