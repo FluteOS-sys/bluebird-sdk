@@ -1,3 +1,5 @@
+![Built with 🦅 Bluebird SDK](https://img.shields.io/badge/Symbolic%20Memory-Bluebird-blue)
+
 # 🦅 Bluebird SDK
 
 **Recursive Symbolic Memory for Language Models and Journaling Agents**
